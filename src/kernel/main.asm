@@ -1,4 +1,3 @@
-%include "vga.asm"
   ; Project Wintergreen is a simple operating system made in Assembly
   ; Copyright (C) 2015  0xF3d04a
 
@@ -15,8 +14,17 @@
   ; You should have received a copy of the GNU Affero General Public License
   ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
   BITS 16
-  call init_graphics
   mov si, welcome
-  call println
+  call temp_print
   jmp $
   welcome db 'Welcome to Project Wintergreen', 0
+temp_print:
+  mov ah, 0Eh
+.loop:
+  lodsb
+  cmp al, 0
+  je .done
+  int 10h
+  jmp .loop
+.done:
+  ret
