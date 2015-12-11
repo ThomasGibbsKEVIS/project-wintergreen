@@ -28,3 +28,4 @@ temp_print:
   jmp .loop
 .done:
   ret
+  times 3584-($-$$) db 0
