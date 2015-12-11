@@ -2,9 +2,9 @@
 echo -n -e "\e[37mCreating build directory..."
 if [ -d build ]
 then
-  mkdir build
   echo -e "\e[32mDone!"
 else
+  mkdir build
   echo -e "\e[32mDone!"
 fi
 echo -n -e "\e[37mCompiling binaries..."
