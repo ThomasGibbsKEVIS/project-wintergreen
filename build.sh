@@ -1,9 +1,7 @@
 #!/bin/bash
-if [ -d build ] then
-  echo -n -e "\e[37mCreating build directory..."
-  mkdir build
-  echo -e "\e[32mDone!"
-fi
+echo -n -e "\e[37mCreating build directory..."
+mkdir build
+echo -e "\e[32mDone!"
 echo -n -e "\e[37mCompiling binaries..."
 nasm -f bin -o build/boot.bin src/boot.asm
 nasm -f bin -o build/kernel.bin src/kernel/main.asm
