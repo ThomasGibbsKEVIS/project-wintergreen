@@ -15,9 +15,9 @@
   ; You should have received a copy of the GNU Affero General Public License
   ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
   mov ax, 7C0h ; Set the stack
-  mov ss, ax
-  mov ax, 1000h
   mov ds, ax
+  mov ax, 2000h
+  mov ss, ax
   mov sp, 2000h
   mov ax, 207h ; Read the kernel into memory
   mov cx, 2
