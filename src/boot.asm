@@ -19,22 +19,13 @@
   mov ax, 1000h
   mov ds, ax
   mov sp, 2000h
-  mov ax, 2401h ; Grant us more memory
-  int 15h
-  mov ax, 1112h ; Set up 80x50 graphics mode
-  xor bl, bl
-  int 10h
   mov ax, 207h ; Read the kernel into memory
-  mov cx, 1
+  mov cx, 2
   xor dh, dh
   xor bx, bx
   mov es, bx
   mov bx, 2000h
   int 13h
-  mov ah, 2 ; Remove that annoying cursor
-  xor bh, bh
-  mov dx, 0FA0h
-  int 10h
   mov ax, 2000h ; Set the stack for the kernel
   mov ds, ax
   mov es, ax
