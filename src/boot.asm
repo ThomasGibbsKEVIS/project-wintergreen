@@ -21,18 +21,6 @@
   mov ss, 2000h
   mov ax, 2401h ; Grant us more memory
   int 15h
-  mov si, testmsg ; Print our testing message(temporary)
-  call print_si
   jmp $ ; Infinite hang(temporary)
-print_si:
-  mov ah, 0Eh
-.loop:
-  lodsb
-  cmp al, 0
-  je .done
-  int 10h
-  jmp .loop
-.done:
-  ret
   times 510-($-$$) db 0
   dw 0AA55h
