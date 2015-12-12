@@ -1,16 +1,13 @@
-; 16-bit drivers
 %include "a20.asm"
-%include "gdt32.asm"
-%include "idt32.asm"
-; 32-bit drivers
+%include "gdt.asm"
+%include "idt.asm"
+%include "panic.asm"
 %include "paging.asm"
-%include "gdt64.asm"
-%include "idt64.asm"
-; 64-bit drivers
 %include "vga.asm"
   BITS 16
 bootup_16:
   call enable_a20
+  jc panic16
   call load_gdt32
   call load_idt32
   jmp 0h:bootup_32
