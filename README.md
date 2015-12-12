@@ -1,6 +1,7 @@
 # Project Wintergreen
 A simple operating system written in Assembly
 ## TODO list
+- Kernel: Create a CPU driver
 - Kernel: Add the executable language for the OS
 - Kernel: Create a VGA driver
 - Kernel: Create a keyboard driver
