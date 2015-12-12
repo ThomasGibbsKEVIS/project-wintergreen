@@ -1,6 +1,5 @@
 %include "a20.asm"
 %include "gdt.asm"
-%include "idt.asm"
 %include "panic.asm"
 %include "paging.asm"
 %include "vga.asm"
