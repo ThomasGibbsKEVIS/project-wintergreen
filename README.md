@@ -7,7 +7,7 @@ A simple operating system written in Assembly
 - Kernel: Create a mouse driver
 - Kernel: Create a PCI driver
 - Kernel: Create a USB driver
-- Kernel: Create a CMOS driver
+- ~~ Kernel: Create a CMOS driver ~~
 - Kernel: Create a disc driver
 - Kernel: Create a filesystem driver
 - Kernel: Create a multitasking enviornment
