@@ -15,23 +15,29 @@
   ; You should have received a copy of the GNU Affero General Public License
   ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
   mov ax, 7C0h ; Set the stack
-  mov ds, ax
-  mov ax, 2000h
   mov ss, ax
-  mov sp, 2000h
-  mov ax, 207h ; Read the kernel into memory
+  add ax, 512
+  mov ds, ax
+  mov sp, 4096
+  xor dh, dh ; Read the kernel from the disc
   mov cx, 2
-  xor dh, dh
-  xor bx, bx
+  mov bx, 1000h
   mov es, bx
-  mov bx, 2000h
+  xor bx, bx
+load_kernel:
+  mov ax, 207h
   int 13h
-  mov ax, 2000h ; Set the stack for the kernel
+  jc reset_disc ; If it failed reset the disc and try again
+  mov ax, 1000h ; But if it worked then set the stack
   mov ds, ax
   mov es, ax
   mov fs, ax
   mov gs, ax
   mov ss, ax
-  jmp 0h:2000h
+  jmp 1000h:0h ; And load it
+reset_disc:
+  xor ah, ah
+  int 13h
+  jmp load_kernel
   times 510-($-$$) db 0
   dw 0AA55h
