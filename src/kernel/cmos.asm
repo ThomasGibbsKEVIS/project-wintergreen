@@ -1,4 +1,4 @@
-  BITS 16
+  BITS 64
 cmos_in:
   out 70h, al
   in al, 71h
