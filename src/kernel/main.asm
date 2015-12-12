@@ -1,7 +1,6 @@
 %include "a20.asm"
 %include "gdt.asm"
 %include "panic.asm"
-%include "paging.asm"
 %include "vga.asm"
   BITS 16
 bootup_16:
@@ -12,13 +11,21 @@ bootup_16:
   jmp 0h:bootup_32
   BITS 32
 bootup_32:
-  call enable_paging
-  call load_gdt64
-  call load_idt64
-  jmp 0h:bootup_64
-  BITS 64
-bootup_64:
-  call init_vga
-  ; TODO: Display the bootsplash
-routine:
-  ; TODO: Write the multitasking routine
+  mov si, welcome
+  call temp_print
+  jmp $
+  welcome db 'Welcome to Project Wintergreen', 0
+temp_print:
+  xor ax, ax
+  mov gs, ax
+  xor di, di
+  mov ah, 0Fh
+.loop:
+  lodsb
+  cmp al, 0
+  je .done
+  mov [gs:di], ax
+  add di, 2
+  jmp .loop
+.done:
+  ret
