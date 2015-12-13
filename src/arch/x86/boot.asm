@@ -19,8 +19,40 @@ loadfs:
   jc panic
   jmp loadfs
 findkernel:
-  ; TODO: Make a function to find the kernel
-  ; TODO: Convert LBA returned from the filesystem to a CHS in int 13h format
+  mov si, 1010h
+  mov di, kernelname
+.check:
+  mov al, [si]
+  mov ah, [di]
+  cmp al, ah
+  jne .fail
+  cmp al, 0
+  je .success
+  inc di
+  inc si
+  jmp .check
+.fail:
+  add si, 8
+  jmp .check
+.success:
+  add si, 2
+  mov ax, [si]
+  push bx
+  push ax
+  mov bx, ax
+  xor dx, dx
+  div word 18
+  inc dl
+  mov cl, dl
+  mov ax, bx
+  xor dx, dx
+  div word 18
+  xor dx, dx
+  div word 2
+  mov dh, dl
+  mov ch, al
+  pop ax
+  pop bx
   mov dl, [boot]
   mov bx, 1000h
   mov es, bx
@@ -54,5 +86,6 @@ panic:
   jmp .loop
   panicmsg db 'Oops! #BlameF3d04a', 0
   boot db 0
+  kernelname 'kernel', 0
   times 510-($-$$) db 0
   dw 0AA55h
