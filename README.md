@@ -12,6 +12,7 @@ This is the TODO list for the developer(s)
 - Make a VGA driver
 - Make a mouse driver
 - Make a disc driver
+
 ### Raspberry Pi(RPi)
 #### Kernel
 - Add the executable language for the OS
@@ -19,6 +20,7 @@ This is the TODO list for the developer(s)
 - Make a VGA driver
 - Make a mouse driver
 - Make a disc driver
+
 ### Universal
 #### Shell
 - Make a graphical toolkit
