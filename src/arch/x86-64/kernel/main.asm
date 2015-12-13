@@ -1,4 +1,4 @@
-BITS 32
+BITS 64
   mov si, welcome
   mov ax, 0B800h
   mov gs, ax
