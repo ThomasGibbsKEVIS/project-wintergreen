@@ -1,4 +1,3 @@
-%include "disc.asm"
 %include "keyboard.asm"
 %include "spearmint.asm"
 %include "starfruit.asm"
