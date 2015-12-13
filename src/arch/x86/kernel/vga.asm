@@ -1,3 +1,8 @@
 BITS 16
-; TODO: Make a function to initiate the display
-; TODO: Make a function to set an entry to the display
+init_vga:
+  mov ax, 13h
+  int 10h
+  mov ax, 0A000h
+  mov gs, ax
+  xor di, di
+  ret
