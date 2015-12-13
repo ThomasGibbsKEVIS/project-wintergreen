@@ -6,6 +6,7 @@ This is the TODO list for the developer(s)
 #### Bootloader
 - Debug the GDT/TSS if nessecary
 - Add the filesystem search routine along with the load kernel routine
+
 #### Kernel
 - Add the executable language for the OS
 - Make a keyboard driver
