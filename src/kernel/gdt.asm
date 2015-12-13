@@ -14,3 +14,5 @@ gdt32:
 gdt32_desc:
   dw gdt_32
   dd gdt_32 - gdt_32_desc - 1
+tss32:
+  times 26 dd 0
