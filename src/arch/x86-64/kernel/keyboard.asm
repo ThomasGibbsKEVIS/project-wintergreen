@@ -1,4 +1,4 @@
-BITS 32
+BITS 64
 getkeycode:
   in al, 60h
   ret
