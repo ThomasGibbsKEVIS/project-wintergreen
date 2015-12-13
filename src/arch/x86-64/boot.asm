@@ -5,8 +5,9 @@ BITS 16
   mov cx, 2
   xor dh, dh
   mov [boot], dl
-  xor bx, bx
+  mov bx, 1000h
   mov es, bx
+  xor bx, bx
 loadfs:
   mov ax, 208h
   int 13h
@@ -21,7 +22,7 @@ findkernel:
   ; TODO: Find the kernel
 loadkernel:
   ; TODO: Load the kernel at 0x00000000
-pmodeinit:
+lmodeinit:
   mov ax, 2402h
   int 15h
   jc panic
@@ -33,12 +34,7 @@ pmodeinit:
   jmp pmodeinit
 .skipa20:
   cli
-  lgdt [gdt_desc]
-  mov ax, 0 ; TODO: Make a pointer to the TSS descriptor
-  ltr ax
-  mov eax, cr0
-  or al, 2
-  mov cr0, eax
+  ; TODO: Set up 64-bit mode
   xor ax, ax
   mov ds, ax
   mov es, ax
@@ -55,17 +51,7 @@ panic:
   je $
   int 10h
   jmp .loop
-  panicmsg db 'Oops! It seems a panic has occured! #BlameF3d04a', 0
+  panicmsg db 'Oops! #BlameF3d04a', 0
   boot db 0
-gdt:
-  dq 0000000000000000h
-  dq 0000000000000000h ; TODO: Make the code descriptor
-  dq 0000000000000000h ; TODO: Make the data descriptor
-  dq 0000000000000000h ; TODO: Make the TSS descriptor
-gdt_desc:
-  dw (gdt_desc - gdt) - 1
-  dd gdt
-tss:
-  times 26 db 0
   times 510-($-$$) db 0
   dw 0AA55h
