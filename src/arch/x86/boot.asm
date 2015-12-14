@@ -27,3 +27,5 @@ runkernel:
   mov gs, ax
   mov ss, ax
   jmp 1000h:0h
+  times 510-($-$$) db 0
+  dw 0AA55h
