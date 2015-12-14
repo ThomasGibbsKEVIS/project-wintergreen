@@ -41,14 +41,14 @@ findkernel:
   push ax
   mov bx, ax
   xor dx, dx
-  div word 18
+  div [lbachs1]
   inc dl
   mov cl, dl
   mov ax, bx
   xor dx, dx
-  div word 18
+  div [lbachs1]
   xor dx, dx
-  div word 2
+  div [lbachs2]
   mov dh, dl
   mov ch, al
   pop ax
@@ -86,6 +86,8 @@ panic:
   jmp .loop
   panicmsg db 'Oops! #BlameF3d04a', 0
   boot db 0
-  kernelname 'kernel', 0
+  kernelname db 'kernel', 0
+  lbachs1 dw 18
+  lbachs2 dw 2
   times 510-($-$$) db 0
   dw 0AA55h
