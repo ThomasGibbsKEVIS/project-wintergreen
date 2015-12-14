@@ -27,5 +27,15 @@ runkernel:
   mov gs, ax
   mov ss, ax
   jmp 1000h:0h
+panic:
+  mov si, panicmsg
+  mov ah, 0Eh
+.loop:
+  lodsb
+  cmp al, 0
+  je $
+  int 10h
+  jmp .loop
+  panicmsg db 'Oops! #BlameF3d04a', 0
   times 510-($-$$) db 0
   dw 0AA55h
