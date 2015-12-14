@@ -17,4 +17,5 @@ else
   echo -e "\e[37mInvalid architecture!"
 fi
 src/arch/${1}/build.sh
+echo -e "\e[36mEnjoy your new OS!\e[37m"
 exit 0
